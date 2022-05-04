@@ -18,9 +18,6 @@ export async function setUserToken(value){
     try {
         value = JSON.stringify(value)
         await AsyncStorage.setItem('@userToken', value)
-        console.log('====================================');
-        console.log(value);
-        console.log('====================================');
     } catch (e) {
         console.log("error: " + e)
     }
@@ -64,9 +61,6 @@ export async function  getUserEmail(){
         console.log("error: " + e)
     }
     if (value !== null) {
-        console.log('====================================');
-        console.log(value);
-        console.log('====================================');
         return value
     } else {
         return null
@@ -81,8 +75,22 @@ export async function  signedIn(){
     }
     if (value !== null) {
         value = JSON.parse(value)
-        
-        return !!value.email
+        return !!value
+    } else {
+        return null
+    }
+}
+
+export async function  isVerified(){
+    let value = null
+    try {
+        value = await AsyncStorage.getItem('@userToken')
+    } catch (e) {
+        console.log("error: " + e)
+    }
+    if (value !== null) {
+        value = JSON.parse(value)
+        return !!value.fds
     } else {
         return null
     }

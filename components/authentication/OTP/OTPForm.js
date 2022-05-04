@@ -17,17 +17,13 @@ const OTPForm = ({navigation}) => {
 
 
     getUserData().then((response)=>{
-        console.log('====================================');
-        console.log("reponse otp");
-        console.log(response);
-        console.log('====================================');
-        setEmail(response.email)
+        setEmail("response.email")
     })
 
     return (
         <>
             {
-                email != null ? <Body navigation={navigation} email={email} /> : null
+                email ? <Body navigation={navigation} email={email} /> : null
             }
         </>
     )
@@ -46,7 +42,6 @@ const Body = ({navigation, email}) => {
             code: code,
             email: email
         }
-
 
         sendOTPCode(OTPData).then((response) => {
             setIsLoading(true)
@@ -171,7 +166,7 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 25,
         height: 50,
-    },    
+    },
     icon: {
         width: 40,
         height: 40,

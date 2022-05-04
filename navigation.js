@@ -28,7 +28,7 @@ const screenOptions = {
 
 const NavigationStack = () => (
     <NavigationContainer>
-        <Stack.Navigator initialRouteName="SendEmailScreen" screenOptions={screenOptions}>
+        <Stack.Navigator initialRouteName="LoginScreen" screenOptions={screenOptions}>
             {/* Splash screens */}
             <Stack.Screen name="SplashScreen" component={SplashScreen} />
 

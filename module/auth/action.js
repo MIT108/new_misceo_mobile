@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable eol-last */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable quotes */
-/* eslint-disable no-extra-boolean-cast */
 /* eslint-disable semi */
 
 import axiosInstance from './../../helper/axiosInstance'
