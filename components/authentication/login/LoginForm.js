@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable quotes */
 /* eslint-disable comma-dangle */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable eol-last */
 /* eslint-disable semi */
 import { Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, Alert } from 'react-native'
-import React from 'react'
+import React,{useState} from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import Validators from 'email-validator'
@@ -15,6 +16,8 @@ import { loginAction } from './../../../module/auth/action'
 
 const LoginForm = ({navigation}) => {
 
+    const [isLoading,setIsLoading] = useState(true)
+
     const onLogin = async(email, password) => {
         const  userData = {
             email: email,
@@ -22,8 +25,11 @@ const LoginForm = ({navigation}) => {
         }
 
         loginAction(userData).then((response) => {
+            setIsLoading(true)
             if (!!response.error) {
-                Alert.alert(response.message)
+                if (response.status == 403) {
+                    navigation.push("SendEmailScreen")
+                }
             }else{
                 Alert.alert(response.message)
             }
@@ -42,6 +48,7 @@ const LoginForm = ({navigation}) => {
         <Formik
         initialValues={{ email: '', password: '' }}
         onSubmit={values => {
+            setIsLoading(false)
             onLogin(values.email, values.password)
         }}
         validationSchema={LoginFormSchema}
@@ -96,13 +103,26 @@ const LoginForm = ({navigation}) => {
                                 <Image style={styles.icons} source={{ uri: 'https://img.icons8.com/ultraviolet/40/000000/checked-checkbox--v1.png' }} />
                             </TouchableOpacity>
                         </View>
+
                         <Pressable
                             titleSize={20}
-                            style={styles.button(isValid)}
-                            onPress={handleSubmit}
+                            style={styles.button(isValid, isLoading)}
+                            onPress={()=>handleSubmit()}
                             disabled={!isValid}
                         >
-                            <Text style={styles.buttonText}>Log In</Text>
+
+                        {
+                            isLoading ? 
+                            <View>
+                                <Text style={styles.buttonText}>Log In</Text>
+                            </View>
+                            :
+                            <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
+                                <Text style={styles.buttonText}>Loading...</Text>
+                                <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/ffffff/external-loading-user-interface-tanah-basah-glyph-tanah-basah.png' }} />
+                            </View>
+                        }
+                           
                         </Pressable>
                         
                         <View style={{ alignItems: 'center', margin: 20, flexDirection: 'row', justifyContent: 'space-around'}}>
@@ -137,8 +157,8 @@ const styles = StyleSheet.create({
         color: 'black',
     },
 
-    button: isValid => ({
-        backgroundColor: isValid ? '#07338C' : '#9ACAF7',
+    button: (isValid, isLoading) => ({
+        backgroundColor: isValid && isLoading ? '#07338C' : '#9ACAF7',
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: 42,
@@ -160,6 +180,13 @@ const styles = StyleSheet.create({
     icons: {
         width: 15,
         height: 15,
+        marginLeft: 10,
+        resizeMode: 'contain'
+    },
+    
+    icon: {
+        width: 40,
+        height: 40,
         marginLeft: 10,
         resizeMode: 'contain'
     },

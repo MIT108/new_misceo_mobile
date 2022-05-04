@@ -3,11 +3,13 @@
 /* eslint-disable quotes */
 import axios from "axios";
 import { getUserToken } from "./UserStorage"
+import { URL } from '@env'
 
 let headers = {}
 
 
 const axiosInstance = axios.create({
+    baseURL: URL,
     headers,
 });
 

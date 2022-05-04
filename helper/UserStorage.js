@@ -6,13 +6,25 @@ import { AsyncStorage } from 'react-native';
 
 export async function setUserData(value){
     try {
-        const jsonValue = JSON.stringify(value.data)
+        const jsonValue = JSON.stringify(value)
         await AsyncStorage.setItem('@UserInfo', jsonValue)
-        await AsyncStorage.setItem('@userToken', value.token)
     } catch (e) {
         console.log("error: " + e)
     }
+}
+
+
+export async function setUserToken(value){
+    try {
+        value = JSON.stringify(value)
+        await AsyncStorage.setItem('@userToken', value)
+        console.log('====================================');
+        console.log(value);
+        console.log('====================================');
+    } catch (e) {
+        console.log("error: " + e)
     }
+}
 
 export async function  getUserData(){
     let value = null
@@ -22,6 +34,7 @@ export async function  getUserData(){
         console.log("error: " + e)
     }
     if (value !== null) {
+        value = JSON.parse(value)
         return value
     } else {
         return null
@@ -37,6 +50,39 @@ export async function  getUserToken(){
     }
     if (value !== null) {
         return value
+    } else {
+        return null
+    }
+}
+
+
+export async function  getUserEmail(){
+    let value = null
+    try {
+    value = await AsyncStorage.getItem('@userInfo')
+    } catch (e) {
+        console.log("error: " + e)
+    }
+    if (value !== null) {
+        console.log('====================================');
+        console.log(value);
+        console.log('====================================');
+        return value
+    } else {
+        return null
+    }
+}
+export async function  signedIn(){
+    let value = null
+    try {
+        value = await AsyncStorage.getItem('@UserInfo')
+    } catch (e) {
+        console.log("error: " + e)
+    }
+    if (value !== null) {
+        value = JSON.parse(value)
+        
+        return !!value.email
     } else {
         return null
     }
