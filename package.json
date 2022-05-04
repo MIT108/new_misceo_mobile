@@ -18,6 +18,7 @@
     "email-validator": "^2.0.4",
     "formik": "^2.2.9",
     "native-base": "^3.4.3",
+    "node-stream-zip": "^1.15.0",
     "react": "17.0.2",
     "react-native": "0.68.1",
     "react-native-dotenv": "^3.3.1",
