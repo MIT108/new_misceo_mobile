@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31">
+  <g id="Download_button" data-name="Download button" transform="translate(-214 -369)">
+    <circle id="Ellipse_23" data-name="Ellipse 23" cx="15.5" cy="15.5" r="15.5" transform="translate(214 369)" fill="#2450a6"/>
+    <path id="download-solid" d="M12.749,4V15.9L8.954,12.106,7.921,13.139l5.03,5.03.516.494.517-.494,5.03-5.03-1.033-1.033-3.8,3.795V4ZM7,19.809v1.437H19.934V19.809Z" transform="translate(216 372)" fill="#fff"/>
+  </g>
+</svg>
