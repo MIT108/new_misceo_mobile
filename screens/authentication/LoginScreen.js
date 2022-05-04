@@ -15,10 +15,11 @@ const PAGE = 'Login.'
 
 const LoginScreen = ({navigation}) => (
     
-    
+
 
     <View style={{ backgroundColor: 'white', height: '100%' }}>
         <Logo page={PAGE}/>
+        <Banner />
         <Banner />
         <ScrollView>
             <View style={{ marginHorizontal: 20 }}>
