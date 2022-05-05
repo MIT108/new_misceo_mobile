@@ -6,7 +6,6 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Logo from '../../components/authentication/mix/Logo'
-// import ChangePasswordForm from '../../components/authentication/changePassword/changePasswordForm'
 import ChangePasswordForm from './../../components/authentication/changePassword/ChangePasswordForm'
 
 

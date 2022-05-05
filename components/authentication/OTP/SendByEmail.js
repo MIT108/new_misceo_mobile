@@ -20,10 +20,6 @@ const SendByEmail = ({navigation}) => {
 
 
     getUserData().then((response)=>{
-        console.log('====================================');
-        console.log("reponse sendemail");
-        console.log(response);
-        console.log('====================================');
         setEmail(response.email)
     })
     

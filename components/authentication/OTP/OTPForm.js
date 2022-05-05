@@ -17,17 +17,13 @@ const OTPForm = ({navigation}) => {
 
 
     getUserData().then((response)=>{
-        console.log('====================================');
-        console.log("reponse otp");
-        console.log(response);
-        console.log('====================================');
         setEmail(response.email)
     })
 
     return (
         <>
             {
-                email != null ? <Body navigation={navigation} email={email} /> : null
+                email ? <Body navigation={navigation} email={email} /> : null
             }
         </>
     )
@@ -47,13 +43,12 @@ const Body = ({navigation, email}) => {
             email: email
         }
 
-
         sendOTPCode(OTPData).then((response) => {
             setIsLoading(true)
             console.log(response);
             if (response.status == 200) {
                 console.log('====================================');
-                console.log(response.message);
+                console.log(response);
                 console.log('====================================');
             } else if (response.status == 422){
                 Alert.alert("Either the code is wrong or it has expired")
@@ -171,7 +166,7 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 25,
         height: 50,
-    },    
+    },
     icon: {
         width: 40,
         height: 40,
