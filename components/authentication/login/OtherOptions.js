@@ -9,13 +9,13 @@ const OtherOptions = ({navigation}) => {
         <View>
             <View style={styles.iconContainer}>
                 <TouchableOpacity>
-                    <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/fluency/48/000000/facebook-new.png' }} />
+                    <Image style={styles.icon} source={require('../../../assets/Icons/facebook.png')} />
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/ios-filled/50/000000/mac-os.png' }} />
+                    <Image style={styles.icon} source={require('../../../assets/Icons/apple.png')} />
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/color/48/000000/google-logo.png' }} />
+                    <Image style={styles.icon} source={require('../../../assets/Icons/google-color.png')} />
                 </TouchableOpacity>
             </View>
             <View style={styles.forgotten}>

@@ -40,7 +40,7 @@ const ChangePasswordForm = ({navigation}) => {
                         <TouchableOpacity onPress={()=>{
                             navigation.push('OTPScreen')
                         }} >
-                        <Text style={{color: '#2947D9', margin: 10}}>Edit</Text>
+                        <Text style={{color: '#2947D9'}}>Edit</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -133,7 +133,6 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70,
         borderRadius: 50,
-        marginLeft: 16,
         borderWidth: 3,
     },
     inputField: {

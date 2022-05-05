@@ -90,8 +90,17 @@ export async function  isVerified(){
     }
     if (value !== null) {
         value = JSON.parse(value)
-        return !!value.fds
+        return !!value
     } else {
         return null
     }
 }
+
+
+export async function  removeData(){
+    setUserData(null)
+    setUserToken(null)
+
+}
+
+

@@ -17,7 +17,7 @@ const OTPForm = ({navigation}) => {
 
 
     getUserData().then((response)=>{
-        setEmail("response.email")
+        setEmail(response.email)
     })
 
     return (
@@ -48,7 +48,7 @@ const Body = ({navigation, email}) => {
             console.log(response);
             if (response.status == 200) {
                 console.log('====================================');
-                console.log(response.message);
+                console.log(response);
                 console.log('====================================');
             } else if (response.status == 422){
                 Alert.alert("Either the code is wrong or it has expired")

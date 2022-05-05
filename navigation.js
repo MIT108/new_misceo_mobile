@@ -4,7 +4,9 @@
 /* eslint-disable semi */
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { NavigationContainer } from '@react-navigation/native'
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import 'react-native-gesture-handler';
 
 //splash screens
@@ -17,9 +19,12 @@ import OTPScreen from './screens/authentication/OTPScreen';
 import SendEmailScreen from './screens/authentication/SendEmailScreen';
 import ListAccountScreen from './screens/school/ListAccountScreen';
 
+// courses screen
+import ListCourseScreen from './screens/school/class/ListCourseScreen';
 
 
-const Stack = createStackNavigator()
+
+const Stack = createNativeStackNavigator()
 
 const screenOptions = {
     headerShown: false
@@ -38,6 +43,9 @@ const NavigationStack = () => (
             <Stack.Screen name="OTPScreen" component={OTPScreen} />
             <Stack.Screen name="SendEmailScreen" component={SendEmailScreen} />
             <Stack.Screen name="ListAccountScreen" component={ListAccountScreen} />
+
+            {/* courses screens */}
+            <Stack.Screen name="ListCourseScreen" component={ListCourseScreen} />
         </Stack.Navigator>
     </NavigationContainer>
 )

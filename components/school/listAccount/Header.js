@@ -52,7 +52,7 @@ const Header = () => {
     <View>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
             <View>
-                <Image style={{ width: 30, height: 30 }} source={{ uri: "https://img.icons8.com/ios-filled/50/000000/menu--v1.png" }} />
+                <Image style={{ width: 30, height: 30 }} source={require('../../../assets/Icons/align-left.png')} />
             </View>
             <View>
                 <Image style={{ width: 60, height: 60 }} source={require("../../../assets/images/logo.png")} />

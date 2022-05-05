@@ -10,24 +10,24 @@ import Logo from '../../components/authentication/mix/Logo'
 import LoginForm from '../../components/authentication/login/LoginForm'
 import Banner from '../../components/authentication/login/Banner'
 import OtherOptions from '../../components/authentication/login/OtherOptions'
-import { isVerified, signedIn } from '../../helper/UserStorage'
+import { isVerified, removeData, signedIn } from '../../helper/UserStorage'
 
 const PAGE = 'Login.'
 
 const LoginScreen = ({navigation}) => {
-    signedIn().then((response) => {
-        if (response == true) {
-            isVerified().then((data) => {
-                if (data == true) {
-                    navigation.push("ListAccountScreen")
-                }else{
-                    navigation.push("SendEmailScreen")
-                }
-            })
-        }else{
-            navigation.push("LoginScreen")
-        }
-    })
+    // signedIn().then((response) => {
+    //     if (response == true) {
+    //         isVerified().then((data) => {
+    //             if (data == true) {
+    //                 navigation.push("ListAccountScreen")
+    //             }else{
+    //                 navigation.push("SendEmailScreen")
+    //             }
+    //         })
+    //     }
+    // })
+
+    removeData()
 
 
     return (

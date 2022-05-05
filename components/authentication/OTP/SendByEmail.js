@@ -20,7 +20,7 @@ const SendByEmail = ({navigation}) => {
 
 
     getUserData().then((response)=>{
-        setEmail("response.email")
+        setEmail(response.email)
     })
     
 

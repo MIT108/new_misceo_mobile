@@ -6,36 +6,35 @@
 /* eslint-disable eol-last */
 /* eslint-disable semi */
 import { Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, Alert } from 'react-native'
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import Validators from 'email-validator'
 import { Divider } from 'react-native-elements'
-import { loginAction } from './../../../module/auth/action'
+import { AuthContext } from '../../../module/auth/action'
 
 
 const LoginForm = ({navigation}) => {
 
-    const [isLoading,setIsLoading] = useState(true)
+    const [isChecked, setChecked] = useState(false)
 
-    const onLogin = async(email, password) => {
-        const  userData = {
-            email: email,
-            password: password
-        }
+    // const onLogin = async(email, password) => {
+    //     const  userData = {
+    //         email: email,
+    //         password: password
+    //     }
 
-        loginAction(userData).then((response) => {
-            setIsLoading(true)
-            if (!!response.error) {
-                if (response.status == 403) {
-                    navigation.push("SendEmailScreen")
-                }
-            }else{
-                Alert.alert(response.message)
-            }
-        })
+    //     // loginAction(userData).then((response) => {
+    //     //     if (!!response.error) {
+    //     //         if (response.status == 403) {
+    //     //             navigation.push("SendEmailScreen")
+    //     //         }
+    //     //     }else{
+    //     //         Alert.alert(response.message)
+    //     //     }
+    //     // })
 
-    }
+    // }
 
     
 
@@ -44,12 +43,17 @@ const LoginForm = ({navigation}) => {
         password: Yup.string().required().min(4, 'Your password has to have at least 6 characters'),
     })
 
+    const {onLogin} = useContext(AuthContext)
+
     return (
         <Formik
         initialValues={{ email: '', password: '' }}
         onSubmit={values => {
-            setIsLoading(false)
-            onLogin(values.email, values.password)
+            let userData = {
+                email: values.email,
+                password: values.password
+            }
+            onLogin(userData)
         }}
         validationSchema={LoginFormSchema}
         validateOnMount={true}
@@ -64,6 +68,9 @@ const LoginForm = ({navigation}) => {
                                 borderColor: Validators.validate(values.email) ? 'green' : values.email.length < 1 ? '#ccc' : 'red',
                             },
                             ]}>
+                            <Text>
+                                87501
+                            </Text>
                             <TextInput
                                 style={styles.textInput}
                                 placeholderTextColor="#444"
@@ -76,6 +83,7 @@ const LoginForm = ({navigation}) => {
                                 onBlur={handleBlur('email')}
                                 value={values.email}
                             />
+                            <Image style={styles.icon} source={require('../../../assets/Icons/social-email.png')} />
                         </View>
                         <Text style={styles.text}>Password</Text>
                         <View style={[
@@ -96,32 +104,34 @@ const LoginForm = ({navigation}) => {
                                 onBlur={handleBlur('password')}
                                 value={values.password}
                             />
+                            <Image style={styles.icon} source={require('../../../assets/Icons/eye-slash.png')} />
                         </View>
                         <View style={{ alignItems: 'center', margin: 20, flexDirection: 'row', justifyContent: 'space-around'}}>
                             <Text style={{ color: 'black' }}>Remember Me?</Text>
-                            <TouchableOpacity>
-                                <Image style={styles.icons} source={{ uri: 'https://img.icons8.com/ultraviolet/40/000000/checked-checkbox--v1.png' }} />
+                            <TouchableOpacity
+                            onPress={()=>{
+                                setChecked(!isChecked)
+                            }}
+                            >
+                            {
+                                isChecked ? 
+                                <Image style={styles.icons} source={ require('../../../assets/Icons/check-square.png') } />
+                                :
+                                <Image style={styles.icons} source={ require('../../../assets/Icons/ic_check_box_outline_blank_24px.png') } />
+                            }
+                                
                             </TouchableOpacity>
                         </View>
 
                         <Pressable
                             titleSize={20}
-                            style={styles.button(isValid, isLoading)}
+                            style={styles.button(isValid)}
                             onPress={()=>handleSubmit()}
                             disabled={!isValid}
                         >
-
-                        {
-                            isLoading ? 
                             <View>
                                 <Text style={styles.buttonText}>Log In</Text>
                             </View>
-                            :
-                            <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
-                                <Text style={styles.buttonText}>Loading...</Text>
-                                <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/ffffff/external-loading-user-interface-tanah-basah-glyph-tanah-basah.png' }} />
-                            </View>
-                        }
                            
                         </Pressable>
                         
@@ -145,6 +155,7 @@ const styles = StyleSheet.create({
     },
 
     inputField: {
+        flexDirection: 'row',
         borderRadius: 10,
         paddingHorizontal: 10,
         backgroundColor: '#FAFAFA',
@@ -152,13 +163,16 @@ const styles = StyleSheet.create({
         color: 'black',
         padding: 5,
         borderWidth: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     textInput: {
+        flex: 1,
         color: 'black',
     },
 
-    button: (isValid, isLoading) => ({
-        backgroundColor: isValid && isLoading ? '#07338C' : '#9ACAF7',
+    button: (isValid) => ({
+        backgroundColor: isValid ? '#07338C' : '#9ACAF7',
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: 42,
@@ -185,8 +199,8 @@ const styles = StyleSheet.create({
     },
     
     icon: {
-        width: 40,
-        height: 40,
+        width: 30,
+        height: 30,
         marginLeft: 10,
         resizeMode: 'contain'
     },

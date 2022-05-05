@@ -9,7 +9,6 @@ let headers = {}
 
 
 const axiosInstance = axios.create({
-    baseURL: URL,
     headers,
 });
 
