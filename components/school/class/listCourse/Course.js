@@ -1,44 +1,108 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable quotes */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable eol-last */
 /* eslint-disable semi */
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import { Image, TouchableOpacity, StyleSheet, Text, View, ImageBackground } from 'react-native'
 import React from 'react'
-import { Shadow } from 'react-native-shadow-2'
+import bannerBGImage from '../../../../assets/images/course_default.jpg'
+import infoIcon from '../../../../assets/Icons/info-circle.png'
+import editIcon from '../../../../assets/Icons/edit.png'
+import fullStartIcon from '../../../../assets/Icons/star.-1.png'
+import emptyStartIcon from '../../../../assets/Icons/star.1.png'
+
 
 const Course = () => {
   return (
-    <View style={{ width: "100%" , borderWidth: 1}}>
+    <View style={{ flex: 1, paddingHorizontal: 10 , marginBottom: 10}}>
 
-        <Shadow
-            distance={5}
-            startColor={'#00000010'}
-            containerViewStyle={{marginVertical: 30, marginHorizontal: 10}}
-            radius={8}>
-            <View style={[styles.container, styles.shadowProp]}>
-                    
-                <View  style={{alignItems: 'center', justifyContent: 'center'}}>
-                    
-                    <Image source={ require('../../../../assets/Icons/filter.png') } style={styles.story}/>
-                    <Text style={{ color: '#2450A6', marginVertical: 10 }}>
-                    fadfsfasdf
-                    </Text>
-                    <View>
-                        <Pressable style={styles.button}>
-                            <Text style={{ color: "white" }}>Learn More</Text>
-                        </Pressable>
+        <View style={styles.card}>
+            <ImageBackground blurRadius={5} source={bannerBGImage}  imageStyle={{ borderRadius: 15}} style={styles.banner}>
+                <Text style={styles.name}> React native crash course</Text>
+            </ImageBackground>
+            
+            <View style={styles.body}>
+                <View style={{ marginBottom: 30 }} >
+                    <Text style={{ fontSize: 12 }}>Lorem ipsu unde, excepturi, facere reprehenderit. Rem maxime vitae repellendus odit. Quod, voluptate ipsum.</Text>
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                        <TouchableOpacity>
+                            <Image style={styles.icon} source={infoIcon} />
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <Image style={styles.icon} source={fullStartIcon} />
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <Image style={styles.icon} source={editIcon} />
+                        </TouchableOpacity>
                     </View>
+                    <TouchableOpacity style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end', alignItems: 'center',  }}>
+                        <Text style={{ color: 'black', fontSize: 10 }}>
+                            Ranking:
+                        </Text>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 10}}>
+                            <Image  style={styles.icon3}  source={fullStartIcon} />
+                            <Image  style={styles.icon3}  source={fullStartIcon} />
+                            <Image  style={styles.icon3}  source={fullStartIcon} />
+                            <Image  style={styles.icon3}  source={emptyStartIcon} />
+                            <Image  style={styles.icon3}  source={emptyStartIcon} />
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
-        </Shadow>
+        </View>
+        
+        
+        
     </View>
+
   )
 }
 
 export default Course
 
 const styles = StyleSheet.create({
-    
-    container: {
-        width: "100%",
+    name:{
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'white',
+        maxWidth: "50%",
+        margin: 15
     },
+    card: {
+        width: "100%",
+        borderRadius: 15, 
+    },
+    banner:{
+        width: "100%",
+        height: 150,
+        borderTopStartRadius: 15,
+        borderTopEndRadius: 15,
+        elevation: 8, 
+        shadow: true, 
+    },
+    body: {
+        width: "100%",
+        padding: 15,  
+        transform: [{ translateY: -20 }],
+        backgroundColor: 'white' ,     
+        zIndex: 10000,
+        borderBottomEndRadius: 15,
+        borderBottomStartRadius: 15,
+        elevation: 2, 
+        shadow: true, 
+    },
+    icon:{
+        width: 20,
+        height: 20,
+        marginRight: 20
+    },
+    icon3:{
+        margin: 2,
+        width: 15,
+        height: 15,
+    }
+    
 })

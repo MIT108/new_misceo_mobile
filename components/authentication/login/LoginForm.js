@@ -12,29 +12,14 @@ import * as Yup from 'yup'
 import Validators from 'email-validator'
 import { Divider } from 'react-native-elements'
 import { AuthContext } from '../../../module/auth/action'
+import { Spinner } from 'react-native-loading-spinner-overlay'
+import Loading from 'react-native-whc-loading'
 
 
 const LoginForm = ({navigation}) => {
 
     const [isChecked, setChecked] = useState(false)
 
-    // const onLogin = async(email, password) => {
-    //     const  userData = {
-    //         email: email,
-    //         password: password
-    //     }
-
-    //     // loginAction(userData).then((response) => {
-    //     //     if (!!response.error) {
-    //     //         if (response.status == 403) {
-    //     //             navigation.push("SendEmailScreen")
-    //     //         }
-    //     //     }else{
-    //     //         Alert.alert(response.message)
-    //     //     }
-    //     // })
-
-    // }
 
     
 
@@ -43,9 +28,12 @@ const LoginForm = ({navigation}) => {
         password: Yup.string().required().min(4, 'Your password has to have at least 6 characters'),
     })
 
-    const {onLogin} = useContext(AuthContext)
+    const {onLogin, isLoading, userInfo} = useContext(AuthContext)
+
+    console.log('====================================');
 
     return (
+        <View>
         <Formik
         initialValues={{ email: '', password: '' }}
         onSubmit={values => {
@@ -53,14 +41,25 @@ const LoginForm = ({navigation}) => {
                 email: values.email,
                 password: values.password
             }
-            onLogin(userData)
+            onLogin(userData).then((response) => {
+                    
+                console.log(response);
+                if(response.status == 403){
+                    Alert.alert(response.message);
+                    navigation.push("SendEmailScreen")
+                }
+            })
+
+            
         }}
         validationSchema={LoginFormSchema}
         validateOnMount={true}
         >
+        
             {({handleChange, handleBlur, handleSubmit,values, isValid})=>(
                 <>
                     <View style={styles.wrapper}>
+                    
                         <Text style={styles.text}>Email</Text>
                         <View style={[
                             styles.inputField,
@@ -122,18 +121,30 @@ const LoginForm = ({navigation}) => {
                                 
                             </TouchableOpacity>
                         </View>
-
+                        {
+                            !isLoading?
                         <Pressable
                             titleSize={20}
                             style={styles.button(isValid)}
                             onPress={()=>handleSubmit()}
-                            disabled={!isValid}
+                            disabled={isLoading}
                         >
                             <View>
                                 <Text style={styles.buttonText}>Log In</Text>
                             </View>
                            
                         </Pressable>
+                        :
+                        <Pressable
+                            style={styles.loading}
+                            disabled={true}
+                        >
+                            <View>
+                                <Text style={styles.buttonText}>Loading...</Text>
+                            </View>
+                           
+                        </Pressable>
+                        }
                         
                         <View style={{ alignItems: 'center', margin: 20, flexDirection: 'row', justifyContent: 'space-around'}}>
                             <Divider width={1} orientation="vertical" />
@@ -144,6 +155,8 @@ const LoginForm = ({navigation}) => {
                 </>
             )}
         </Formik>
+
+        </View>
     )
 }
 
@@ -179,6 +192,15 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         height: 50,
     }),
+
+    loading:{
+        backgroundColor: '#9ACAF7',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: 42,
+        borderRadius: 6,
+        height: 50,
+    },
 
     buttonText: {
         fontWeight: '600',
