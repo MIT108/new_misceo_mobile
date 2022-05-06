@@ -2,7 +2,7 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable eol-last */
 /* eslint-disable semi */
-import React from 'react'
+import React, { useContext } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -21,6 +21,7 @@ import ListAccountScreen from './screens/school/ListAccountScreen';
 
 // courses screen
 import ListCourseScreen from './screens/school/class/ListCourseScreen';
+import { AuthContext } from './module/auth/action';
 
 
 
@@ -31,7 +32,9 @@ const screenOptions = {
 }
 
 
-const NavigationStack = () => (
+const NavigationStack = () => {
+
+    return (
     <NavigationContainer>
         <Stack.Navigator initialRouteName="LoginScreen" screenOptions={screenOptions}>
             {/* Splash screens */}
@@ -48,6 +51,6 @@ const NavigationStack = () => (
             <Stack.Screen name="ListCourseScreen" component={ListCourseScreen} />
         </Stack.Navigator>
     </NavigationContainer>
-)
+)}
 
 export default NavigationStack

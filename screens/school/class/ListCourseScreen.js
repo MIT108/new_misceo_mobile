@@ -13,10 +13,13 @@ const ListCourseScreen = () => {
       <View>
         <Header />
       </View>
-      <View>
+      <View style={{ marginVertical: 30 }}>
         <Menu />
       </View>
-      <ScrollView>
+      <ScrollView >
+        <Course />
+        <Course />
+        <Course />
         <Course />
       </ScrollView>
     </View>

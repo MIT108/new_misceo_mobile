@@ -21,13 +21,14 @@ const SendByEmail = ({navigation}) => {
 
     getUserData().then((response)=>{
         setEmail(response.email)
+        console.log(response);
     })
     
 
   return (
-          <>
-            {
-                email != null ?
+        //   <>
+        //     {
+        //         email != null ?
                 <View>
                     <Banner />
                     <View style={{ paddingHorizontal: 30 }}>
@@ -75,11 +76,11 @@ const SendByEmail = ({navigation}) => {
                         </View>
                     </View>
                 </View>
-                :
-                null
-            }
+                // :
+                // null
+        //     }
 
-          </>
+        //   </>
   )
 }
 

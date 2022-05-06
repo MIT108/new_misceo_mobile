@@ -4,13 +4,8 @@
 
 import { AsyncStorage } from 'react-native';
 
-export async function setUserData(value){
-    try {
-        const jsonValue = JSON.stringify(value)
-        await AsyncStorage.setItem('@UserInfo', jsonValue)
-    } catch (e) {
-        console.log("error: " + e)
-    }
+export function setUserData(value){
+    AsyncStorage.setItem('UserInfo', JSON.parse(value));
 }
 
 
@@ -24,18 +19,15 @@ export async function setUserToken(value){
 }
 
 export async function  getUserData(){
+
     let value = null
-    try {
-        value = await AsyncStorage.getItem('@UserInfo')
-    } catch (e) {
-        console.log("error: " + e)
-    }
-    if (value !== null) {
-        value = JSON.parse(value)
-        return value
-    } else {
-        return null
-    }
+    value = await AsyncStorage.getItem('UserInfo')
+    value = JSON.parse(value)
+    console.log('====================================');
+    console.log(value);
+    console.log('====================================');
+
+    return value
 }
 
 export async function  getUserToken(){

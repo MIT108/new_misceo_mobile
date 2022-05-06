@@ -131,7 +131,7 @@
 // }
 
 import axiosInstance from './../../helper/axiosInstance'
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 import {
     getUserData,
     setUserData,
@@ -145,62 +145,61 @@ export const AuthContext = createContext();
 
 
 export const AuthProvider = ({children}) => {
-    const onLogin = (userData) => {
-        axiosInstance.post(
+    const [userInfo, setUserInfo] = useState({})
+    const [authToken, setAuthToken] = useState({})
+    const [isLoading, setIsLoading] = useState(false)
+
+    async function onLogin(userData){
+        let returns = []
+        setIsLoading(true)
+        await axiosInstance.post(
             URL + "user/login",
             userData
         ).then((response) => {
             let userInfo = response.data
-            console.log('====================================');
             console.log(userInfo);
-            console.log('====================================');
+            setIsLoading(false)
         }).catch((error) => {
-            console.log('====================================');
-            console.log(error);
-            console.log('====================================');
+            setIsLoading(false)
+            if (error.response.status == 500) {
+                returns = {
+                    'error': "connect to the internet",
+                    'message': "connect to the internet",
+                    'status': error.response.status
+                }
+            } else if (error.response.status == 0) {
+
+                returns = {
+                    'error': "connect to the internet",
+                    'message': "connect to the internet",
+                    'status': error.response.status
+                }
+            }else {
+                if (error.response.status == 403) {
+                    setUserInfo(error.response.data.data.user)
+                    setUserData(error.response.data.data.user)
+                    returns = {
+                        'error': error.response.data.message,
+                        'message': error.response.data.message,
+                        'status': error.response.status
+                    }
+                }else{
+                    returns = {
+                        'error': error.response.data.message,
+                        'message': error.response.data.message,
+                        'status': error.response.status
+                    }
+
+                }
+
+            }
+
         })
 
-        // let returns = [];
-
-        // try {
-            
-        //     const response = axiosInstance.post(
-        //         URL + 'user/login',
-        //         userData
-        //     );
-        //     console.log("user is ok");
-            
-    
-        // } catch (error) {
-        //     console.log(error);
-        //     if (error.response.status == 500) {
-        //         returns = {
-        //             'error': "connect to the internet",
-        //             'message': "connect to the internet",
-        //             'status': error.response.status
-        //         }
-        //         console.log('====================================');
-        //         console.log(returns);
-        //         console.log('====================================');
-        //     } else {
-        //         if (error.response.status == 403) {
-        //             console.log(error.response.data.data.user);
-        //             setUserData(error.response.data.data.user)
-        //         }
-        //         returns = {
-        //             'error': error.response.data.message,
-        //             'message': error.response.data.message,
-        //             'status': error.response.status
-        //         }
-    
-        //     }
-        // }
-    
-        // return returns
-
+        return returns
     }
 
     return(
-        <AuthContext.Provider value={{ onLogin }}>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{ onLogin, isLoading, userInfo }}>{children}</AuthContext.Provider>
     )
 }
