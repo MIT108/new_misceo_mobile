@@ -165,6 +165,7 @@ export const AuthProvider = ({children}) => {
                 returns = {
                     'error': "connect to the internet",
                     'message': "connect to the internet",
+                    'status': error.response.status,
                     'status': error.response.status
                 }
             } else if (error.response.status == 0) {
