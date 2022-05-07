@@ -6,7 +6,6 @@ import React from "react";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
-import { ContactStackNavigator } from "../../navigation"
 import BottomTabNavigator from "../tab/School";
 
 const Drawer = createDrawerNavigator();
