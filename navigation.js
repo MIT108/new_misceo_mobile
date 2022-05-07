@@ -25,60 +25,25 @@ import ListAccountScreen from './screens/school/ListAccountScreen';
 import { AuthContext, AuthProvider } from './module/auth/action';
 import About from './screens/school/About';
 import Contact from './screens/school/Contact';
+import School from './navigation/drawer/School'
+import AuthenticationStack from './navigation/stack/Authentication';
 
 
 const Stack = createNativeStackNavigator()
+
 
 const screenOptions = {
     headerShown: false,
 }
 
-
-const MainStackNavigator = () => {
+  const InitialStack = () => {
     return (
-      <Stack.Navigator screenOptions={screenOptions}>
-        <Stack.Screen name="Home" component={SchoolIndexScreen} />
-        <Stack.Screen name="About" component={About} />
-      </Stack.Navigator>
-    );
-  }
-  
-  const ContactStackNavigator = () => {
-    return (
-      <Stack.Navigator screenOptions={screenOptions}>
-        <Stack.Screen name="Contact" component={Contact} />
+      <Stack.Navigator  screenOptions={screenOptions} >
+        <Stack.Screen name="Authentication" component={AuthenticationStack} />
+        <Stack.Screen name="SchoolDrawer" component={School} />
       </Stack.Navigator>
     );
   }
 
-// const NavigationStack = () => {
 
-//     return (
-//     <NavigationContainer>
-//         <Stack.Navigator initialRouteName="SchoolIndexScreen" screenOptions={screenOptions}>
-//             {/* Splash screens */}
-//             <Stack.Screen name="SplashScreen" component={SplashScreen}/>
-
-//             {/* Authentication screen */}
-            
-//             <Stack.Group screenOptions={{ presentation: 'modal' }}>
-//                 <Stack.Screen name="LoginScreen" component={LoginScreen} />
-//                 <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />
-//                 <Stack.Screen name="OTPScreen" component={OTPScreen} />
-//                 <Stack.Screen name="SendEmailScreen" component={SendEmailScreen} />
-//                 <Stack.Screen name="ListAccountScreen" component={ListAccountScreen} />
-//             </Stack.Group>
-
-//             {/* courses screens */}
-//             {/* <Stack.Screen name="SchoolIndexScreen" component={SchoolIndexScreen} /> */}
-//             <Stack.Screen name="ListCourseScreen" component={ListCourseScreen} />
-
-
-            
-//             {/* <Stack.Screen name="About" component={About} /> */}
-            
-//         </Stack.Navigator>
-//     </NavigationContainer>
-// )}
-
-export { MainStackNavigator, ContactStackNavigator }
+export default InitialStack
