@@ -21,7 +21,7 @@ import ListAccountScreen from './screens/school/ListAccountScreen';
 
 // courses screen
 import ListCourseScreen from './screens/school/class/ListCourseScreen';
-import { AuthContext } from './module/auth/action';
+import { AuthContext, AuthProvider } from './module/auth/action';
 
 
 
@@ -41,11 +41,14 @@ const NavigationStack = () => {
             <Stack.Screen name="SplashScreen" component={SplashScreen}/>
 
             {/* Authentication screen */}
-            <Stack.Screen name="LoginScreen" component={LoginScreen} />
-            <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />
-            <Stack.Screen name="OTPScreen" component={OTPScreen} />
-            <Stack.Screen name="SendEmailScreen" component={SendEmailScreen} />
-            <Stack.Screen name="ListAccountScreen" component={ListAccountScreen} />
+            
+            <Stack.Group screenOptions={{ presentation: 'modal' }}>
+                <Stack.Screen name="LoginScreen" component={LoginScreen} />
+                <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />
+                <Stack.Screen name="OTPScreen" component={OTPScreen} />
+                <Stack.Screen name="SendEmailScreen" component={SendEmailScreen} />
+                <Stack.Screen name="ListAccountScreen" component={ListAccountScreen} />
+            </Stack.Group>
 
             {/* courses screens */}
             <Stack.Screen name="ListCourseScreen" component={ListCourseScreen} />

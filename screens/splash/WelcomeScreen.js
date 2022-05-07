@@ -13,7 +13,7 @@ const SplashScreen = ({navigation}) => {
        <Image source={logo} style={{width:80, height:80, alignSelf:"flex-end", margin:8}}/>
        <View style={styles.Titleplace}> 
      <Text style={styles.Title} >Getting Started</Text>
-    <Text style={styles.Message}>gsjjkhqKJKLJLKQjklshhkjkqjkjqkqbqnqaggajhajhajsjhjkqjkqjkjhjqhjhkq </Text>
+    <Text style={styles.Message}>Lorem, ipsum dolor sit. Velit deserunt sit, nulla odio maiores enim sapiente nisi tene </Text>
     </View>
 
     <TouchableOpacity style={{ left:"80%", top:"5%", alignSelf:"flex-end", height:"100%",width:"100%"}} onPress = {()=>navigation.navigate("LoginScreen")}>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     
   },
 Message:{
-  fontSize:20,
+  fontSize:15,
     color:"black",
     position:"absolute",
     top:"90%",

@@ -5,11 +5,11 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Header from '../../components/school/listAccount/Header'
 
-const ListAccountScreen = () => {
+const ListAccountScreen = ({navigation}) => {
     return (
       <View style={{ padding: 20, backgroundColor: 'white', height: '100%' }}>
         <View>
-          <Header />
+          <Header navigation={navigation} />
         </View>
       </View>
     )

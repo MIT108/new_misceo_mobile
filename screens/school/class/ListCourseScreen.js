@@ -7,20 +7,23 @@ import Header from '../../../components/school/class/listCourse/Header'
 import Menu from '../../../components/school/class/listCourse/Menu'
 import Course from '../../../components/school/class/listCourse/Course'
 
-const ListCourseScreen = () => {
+const ListCourseScreen = ({navigation}) => {
   return (
     <View style={{ backgroundColor: 'white', minHeight: '100%', padding: 20}}>
       <View>
-        <Header />
+        <Header navigation={navigation}/>
       </View>
       <View style={{ marginVertical: 30 }}>
         <Menu />
       </View>
-      <ScrollView >
+      <ScrollView style={{ paddingBottom: 30 }}>
         <Course />
         <Course />
         <Course />
         <Course />
+        <View style={{ marginBottom: 150, flex: 1, justifyContent: 'center' ,alignItems: 'center', flexDirection: 'row'}}>
+          <Text>No more courses</Text>
+        </View>
       </ScrollView>
     </View>
   )
