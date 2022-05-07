@@ -3,10 +3,10 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable eol-last */
 /* eslint-disable semi */
-import { StyleSheet, Text, View, Image, Pressable, Alert } from 'react-native'
+import { StyleSheet, Text, View, Image, Pressable, Alert, TouchableOpacity } from 'react-native'
 import React ,{useState} from 'react'
 import { Divider } from 'react-native-elements'
-import { getUserData } from '../../../helper/UserStorage'
+import { getUserData, removeData } from '../../../helper/UserStorage'
 import { sendOTPAction } from './../../../module/auth/action'
 
 
@@ -19,68 +19,79 @@ const SendByEmail = ({navigation}) => {
     const [isLoading,setIsLoading] = useState(true)
 
 
-    getUserData().then((response)=>{
-        setEmail(response.email)
-        console.log(response);
+    
+    getUserData().then((response) => {
+        if(!!response){
+            setEmail(response.email)
+        }else{
+            navigation.push("LoginScreen")
+        }
     })
     
 
   return (
-        //   <>
-        //     {
-        //         email != null ?
-                <View>
-                    <Banner />
-                    <View style={{ paddingHorizontal: 30 }}>
-                        <Heading />
-                        <TextMessage email={email} />
-                        <SendMessage />
-                        
-                        <View style={{ marginTop: 30 }}>
+        <View>
+            <Banner />
+            <View style={{ paddingHorizontal: 30 }}>
+                <Heading />
+                <TextMessage email={email} />
+                <SendMessage />
+                
+                <View style={{ marginTop: 30 }}>
+                    
+                    <Pressable
+                        titleSize={20}
+                        style={styles.button(isLoading)}
+                        disabled={!isLoading}
+                        onPress={()=>{
+                                setIsLoading(false)
                             
-                            <Pressable
-                                titleSize={20}
-                                style={styles.button(isLoading)}
-                                disabled={!isLoading}
-                                onPress={()=>{
-                                        setIsLoading(false)
-                                    
-                                    const  userData = {
-                                        email: email,
-                                    }
-
-                                    sendOTPAction(userData).then((response) => {
-                                        setIsLoading(true)
-                                        if(response.status == 422){
-                                            Alert.alert(response.message)
-                                        }else if(response.status == 200){
-                                            navigation.push("OTPScreen")
-                                        }
-                                    })
-                                }}
-                            >
-
-                            {
-                                isLoading ? 
-                                <View>
-                                    <Text style={styles.buttonText}>Send</Text>
-                                </View>
-                                :
-                                <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
-                                    <Text style={styles.buttonText}>Loading...</Text>
-                                    <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/ffffff/external-loading-user-interface-tanah-basah-glyph-tanah-basah.png' }} />
-                                </View>
+                            const  userData = {
+                                email: email,
                             }
-                                
-                            </Pressable>
-                        </View>
-                    </View>
-                </View>
-                // :
-                // null
-        //     }
 
-        //   </>
+                            sendOTPAction(userData).then((response) => {
+                                setIsLoading(true)
+                                console.log(response)
+                                if(response.status === 200) {
+                                    navigation.push("OTPScreen")
+                                }else if(response.status === 500 || response.status === 0){
+                                    Alert.alert(response.message)
+                                }else {
+                                    navigation.push("LoginScreen")
+                                }
+                            })
+                        }}
+                    >
+
+                    {
+                        isLoading ? 
+                        <View>
+                            <Text style={styles.buttonText}>Send</Text>
+                        </View>
+                        :
+                        <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
+                            <Text style={styles.buttonText}>Loading...</Text>
+                            <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/ffffff/external-loading-user-interface-tanah-basah-glyph-tanah-basah.png' }} />
+                        </View>
+                    }
+                        
+                    </Pressable>
+                </View>
+            </View>
+                    
+            <View style={{ flexDirection: 'row' , justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
+                <Text>Go to login ? </Text>
+                <TouchableOpacity 
+                    onPress={()=>{
+                        removeData()
+                        navigation.push("LoginScreen")
+                        }}
+                >
+                    <Text style={{ color: '#07338C' }}>Click here</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
   )
 }
 

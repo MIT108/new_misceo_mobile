@@ -1,0 +1,33 @@
+{
+  "default_branch": "master",
+  "branches": [
+    "authentication",
+    "bottom-nav",
+    "chatCall",
+    "frontend",
+    "master",
+    "origin",
+    "passwordReset",
+    "peetTest"
+  ],
+  "parent": {
+    "authentication": "master",
+    "bottom-nav": "master",
+    "chatCall": "master",
+    "frontend": "master",
+    "master": null,
+    "origin": "master",
+    "passwordReset": "master",
+    "peetTest": "master"
+  },
+  "order": [
+    "master",
+    "authentication",
+    "bottom-nav",
+    "chatCall",
+    "frontend",
+    "origin",
+    "passwordReset",
+    "peetTest"
+  ]
+}

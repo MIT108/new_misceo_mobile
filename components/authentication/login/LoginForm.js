@@ -11,26 +11,23 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import Validators from 'email-validator'
 import { Divider } from 'react-native-elements'
-import { AuthContext } from '../../../module/auth/action'
-import { Spinner } from 'react-native-loading-spinner-overlay'
-import Loading from 'react-native-whc-loading'
+import { loginAction } from '../../../module/auth/action'
+import { getUserData } from '../../../helper/UserStorage'
 
 
 const LoginForm = ({navigation}) => {
 
     const [isChecked, setChecked] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
 
     
-
     const LoginFormSchema = Yup.object().shape({
         email: Yup.string().email().required('An email is required'),
         password: Yup.string().required().min(4, 'Your password has to have at least 6 characters'),
     })
 
-    const {onLogin, isLoading, userInfo} = useContext(AuthContext)
 
-    console.log('====================================');
 
     return (
         <View>
@@ -41,13 +38,24 @@ const LoginForm = ({navigation}) => {
                 email: values.email,
                 password: values.password
             }
-            onLogin(userData).then((response) => {
+            setIsLoading(true);
+            
+            loginAction(userData).then((response) => {
+                setIsLoading(false)
                     
-                console.log(response);
                 if(response.status == 403){
-                    Alert.alert(response.message);
                     navigation.push("SendEmailScreen")
+                }else{
+                    Alert.alert(response.message)
                 }
+                // getUserData().then((response) => {
+                //     if(!!response){
+                        
+                //     }else{
+                //         console.log("false")
+                //     }
+                // })
+
             })
 
             
@@ -139,8 +147,9 @@ const LoginForm = ({navigation}) => {
                             style={styles.loading}
                             disabled={true}
                         >
-                            <View>
+                            <View style={{ flexDirection: 'row' }}>
                                 <Text style={styles.buttonText}>Loading...</Text>
+                                <Image style={styles.icon} source={{ uri: 'https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/ffffff/external-loading-user-interface-tanah-basah-glyph-tanah-basah.png' }} />
                             </View>
                            
                         </Pressable>

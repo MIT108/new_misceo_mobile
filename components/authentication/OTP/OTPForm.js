@@ -12,32 +12,26 @@ import { sendOTPCode } from '../../../module/auth/action';
 
 const OTPForm = ({navigation}) => {
     
-    const [email,setEmail] = useState(null)
 
-
-
-    getUserData().then((response)=>{
-        setEmail(response.email)
-    })
-
-    return (
-        <>
-            {
-                email ? <Body navigation={navigation} email={email} /> : null
-            }
-        </>
-    )
-}
-
-const Body = ({navigation, email}) => {
     const OTPFormSchema = Yup.object().shape({
         OTPCode: Yup.string().required('OTP Code is required'),
     })
 
 
     const [isLoading,setIsLoading] = useState(true)
+    const [email,setEmail] = useState(null)
 
-    const sendOTP = (code, email) => {
+
+    
+    getUserData().then((response) => {
+        if(!!response){
+            setEmail(response.email)
+        }else{
+            navigation.push("LoginScreen")
+        }
+    })
+
+    const sendOTP = (code) => {
         const  OTPData = {
             code: code,
             email: email
@@ -47,9 +41,7 @@ const Body = ({navigation, email}) => {
             setIsLoading(true)
             console.log(response);
             if (response.status == 200) {
-                console.log('====================================');
-                console.log(response);
-                console.log('====================================');
+                navigation.push("ChangePasswordScreen")
             } else if (response.status == 422){
                 Alert.alert("Either the code is wrong or it has expired")
             } else {
@@ -72,7 +64,7 @@ const Body = ({navigation, email}) => {
             initialValues={{ OTPCode: '' }}
             onSubmit={values => {
                 setIsLoading(false)
-                sendOTP(values.OTPCode, email)
+                sendOTP(values.OTPCode)
             }}
             validationSchema={OTPFormSchema}
             validateOnMount={true}
@@ -108,16 +100,22 @@ const Body = ({navigation, email}) => {
                                 }
                             </Pressable>
                         </View>
-                        <View>
-                            <TouchableOpacity>
-
-                            </TouchableOpacity>
-                        </View>
                     </>
                 )}
             </Formik>
+            <View style={{ flexDirection: 'row', flex: 1 , justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
+                <Text>Have not received the email ? </Text>
+                <TouchableOpacity 
+                    onPress={()=>navigation.push("SendEmailScreen")}
+                >
+                    <Text style={{ color: '#07338C' }}>Click here</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     )
+}
+
+const Body = ({navigation}) => {
 
 }
 
@@ -154,9 +152,9 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     OTPContainer: {
-        marginTop: 10,
+        marginTop: 5,
         paddingHorizontal: 20,
-        marginBottom: 40,
+        marginBottom: 20,
     },
     OTPField:{
         borderColor: 'black',

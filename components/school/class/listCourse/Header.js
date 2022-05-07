@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable eol-last */
 /* eslint-disable semi */
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import { removeData } from '../../../../helper/UserStorage'
 
-const Header = () => {
+const Header = ({navigation}) => {
     return (
         <View style={{ flexDirection: 'row' }}> 
             <View style={{ flexDirection: 'row' }}>
@@ -12,7 +13,13 @@ const Header = () => {
                 <Text style={styles.text2}>user.</Text>
             </View>
             <View style={{ flex: 1 , justifyContent: 'flex-end', alignItems: 'center', flexDirection: 'row'}}>
-                <Image source={require('../../../../assets/Icons/circle-plus.png')} style={{ width: 30, height: 30 }} />
+            <TouchableOpacity
+            onPress={()=>{
+              removeData()
+              navigation.push("SplashScreen")
+            }}>
+            <Image source={require('../../../../assets/Icons/circle-plus.png')} style={{ width: 30, height: 30 }} />
+            </TouchableOpacity>
             </View>
         </View>
     )
