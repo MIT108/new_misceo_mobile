@@ -2,9 +2,7 @@
 /* eslint-disable semi */
 import { Image, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { Divider } from 'react-native-elements'
 import { Shadow } from 'react-native-shadow-2'
-import DropShadow from 'react-native-drop-shadow'
 
 const List = ({heading, items}) => {
     return (
@@ -36,7 +34,7 @@ const Item = ({item}) => {
                         
                     <View  style={{alignItems: 'center', justifyContent: 'center'}}>
                         
-                        <Image source={{ uri: item.logo }} style={styles.story}/>
+                        <Image source={require('../../../assets/images/defaultIAI.png')} style={styles.story}/>
                         <Text style={{ color: '#2450A6', marginVertical: 10 }}>
                         { item.name }
                         </Text>

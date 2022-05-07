@@ -10,7 +10,7 @@ import Logo from '../../components/authentication/mix/Logo'
 import LoginForm from '../../components/authentication/login/LoginForm'
 import Banner from '../../components/authentication/login/Banner'
 import OtherOptions from '../../components/authentication/login/OtherOptions'
-import { isVerified, removeData, signedIn } from '../../helper/UserStorage'
+import { getUserData, isVerified, removeData, signedIn } from '../../helper/UserStorage'
 
 const PAGE = 'Login.'
 
@@ -26,6 +26,13 @@ const LoginScreen = ({navigation}) => {
     //         })
     //     }
     // })
+    
+    
+    getUserData().then((response) => {
+        if(!!response){
+            navigation.push("SendEmailScreen")
+        }
+    })
 
     removeData()
 

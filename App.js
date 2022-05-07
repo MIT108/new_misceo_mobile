@@ -8,8 +8,6 @@ import NavigationStack from "./navigation"
 
 export default function App(){
   return (
-    <AuthProvider>
       <NavigationStack />
-    </AuthProvider>
   )
 }
