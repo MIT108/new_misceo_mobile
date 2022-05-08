@@ -113,7 +113,7 @@ const LoginForm = ({navigation}) => {
                             />
                             <Image style={styles.icon} source={require('../../../assets/Icons/eye-slash.png')} />
                         </View>
-                        <View style={{ alignItems: 'center', margin: 20, flexDirection: 'row', justifyContent: 'space-around'}}>
+                        {/* <View style={{ alignItems: 'center', margin: 20, flexDirection: 'row', justifyContent: 'space-around'}}>
                             <Text style={{ color: 'black' }}>Remember Me?</Text>
                             <TouchableOpacity
                             onPress={()=>{
@@ -127,6 +127,15 @@ const LoginForm = ({navigation}) => {
                                 <Image style={styles.icons} source={ require('../../../assets/Icons/ic_check_box_outline_blank_24px.png') } />
                             }
                                 
+                            </TouchableOpacity>
+                        </View> */}
+                        
+                        <View style={styles.forgotten}>
+                            <Text  style={{ color: 'black' }}>Forgotten password?</Text>
+                            <TouchableOpacity onPress={()=>{
+                                        navigation.push('ChangePasswordScreen')
+                                    }} >
+                                <Text style={{ color: '#6BB0F5' }}> Click here</Text>
                             </TouchableOpacity>
                         </View>
                         {
@@ -155,11 +164,11 @@ const LoginForm = ({navigation}) => {
                         </Pressable>
                         }
                         
-                        <View style={{ alignItems: 'center', margin: 20, flexDirection: 'row', justifyContent: 'space-around'}}>
+                        {/* <View style={{ alignItems: 'center', margin: 20, flexDirection: 'row', justifyContent: 'space-around'}}>
                             <Divider width={1} orientation="vertical" />
                             <Text style={{ color: 'black' }}>Or proceed with</Text>
                             <Divider width={1} orientation="vertical" />
-                        </View>
+                        </View> */}
                     </View>
                 </>
             )}
@@ -191,6 +200,12 @@ const styles = StyleSheet.create({
     textInput: {
         flex: 1,
         color: 'black',
+    },
+    forgotten:{
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'center',
+        marginVertical: 30
     },
 
     button: (isValid) => ({

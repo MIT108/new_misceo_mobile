@@ -7,7 +7,7 @@ import React from 'react'
 const OtherOptions = ({navigation}) => {
   return (
         <View>
-            <View style={styles.iconContainer}>
+            {/* <View style={styles.iconContainer}>
                 <TouchableOpacity>
                     <Image style={styles.icon} source={require('../../../assets/Icons/facebook.png')} />
                 </TouchableOpacity>
@@ -17,15 +17,7 @@ const OtherOptions = ({navigation}) => {
                 <TouchableOpacity>
                     <Image style={styles.icon} source={require('../../../assets/Icons/google-color.png')} />
                 </TouchableOpacity>
-            </View>
-            <View style={styles.forgotten}>
-                <Text  style={{ color: 'black' }}>Forgotten password?</Text>
-                <TouchableOpacity onPress={()=>{
-                            navigation.push('ChangePasswordScreen')
-                        }} >
-                    <Text style={{ color: '#6BB0F5' }}> Click here</Text>
-                </TouchableOpacity>
-            </View>
+            </View> */}
             <View style={styles.signupContainer}>
                 <Text  style={{ color: 'black' }}>Dont't have an account?</Text>
                 <TouchableOpacity>
