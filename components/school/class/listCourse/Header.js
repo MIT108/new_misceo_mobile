@@ -16,7 +16,7 @@ const Header = ({navigation}) => {
             <TouchableOpacity
             onPress={()=>{
               removeData()
-              navigation.push("SplashScreen")
+              navigation.push("SchoolDrawer")
             }}>
             <Image source={require('../../../../assets/Icons/circle-plus.png')} style={{ width: 30, height: 30 }} />
             </TouchableOpacity>

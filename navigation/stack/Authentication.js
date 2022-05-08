@@ -16,6 +16,7 @@ import OTPScreen from '../../screens/authentication/OTPScreen';
 import SendEmailScreen from '../../screens/authentication/SendEmailScreen';
 
 import ListAccountScreen from '../../screens/school/ListAccountScreen';
+import ListCourseScreen from '../../screens/school/class/ListCourseScreen';
 
 const Stack = createNativeStackNavigator()
 
@@ -34,6 +35,9 @@ const AuthenticationStack = () => {
             <Stack.Screen name="OTPScreen" component={OTPScreen} />
             <Stack.Screen name="SendEmailScreen" component={SendEmailScreen} />
             <Stack.Screen name="ListAccountScreen" component={ListAccountScreen} />
+
+            
+            <Stack.Screen name="ListCourseScreen" component={ListCourseScreen} />
         </Stack.Navigator>
 )}
 
