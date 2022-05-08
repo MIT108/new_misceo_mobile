@@ -2,14 +2,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const ListPostScreen = () => {
+const AddPostScreen = () => {
   return (
     <View>
-      <Text>list posts in the course</Text>
+      <Text>AddPostScreen</Text>
     </View>
   )
 }
 
-export default ListPostScreen
+export default AddPostScreen
 
 const styles = StyleSheet.create({})

@@ -8,6 +8,7 @@ import 'react-native-gesture-handler';
 
 import School from './navigation/drawer/School'
 import AuthenticationStack from './navigation/stack/Authentication';
+import SchoolStack from './navigation/stack/School';
 
 
 const Stack = createNativeStackNavigator()

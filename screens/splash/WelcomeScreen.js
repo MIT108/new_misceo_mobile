@@ -18,7 +18,7 @@ const SplashScreen = ({navigation}) => {
           <Text style={styles.Message}>Lorem, ipsum dolor sit. Velit deserunt sit, nulla odio maiores enim sapiente nisi tene </Text>
         </View>
 
-        <TouchableOpacity style={{ left:"80%", top:"5%", alignSelf:"flex-end", height:"100%",width:"100%"}} onPress = {()=>navigation.navigate("SchoolDrawer")}>
+        <TouchableOpacity style={{ left:"80%", top:"5%", alignSelf:"flex-end", height:"100%",width:"100%"}} onPress = {()=>navigation.navigate("LoginScreen")}>
           <Image source={arrow} style={{ width:60, height:60,}}/>
         </TouchableOpacity>
       </ImageBackground>
