@@ -45,17 +45,11 @@ const LoginForm = ({navigation}) => {
                     
                 if(response.status == 403){
                     navigation.push("SendEmailScreen")
+                }else if(response.status == 200){
+                    navigation.push("ListAccountScreen")
                 }else{
                     Alert.alert(response.message)
                 }
-                // getUserData().then((response) => {
-                //     if(!!response){
-                        
-                //     }else{
-                //         console.log("false")
-                //     }
-                // })
-
             })
 
             

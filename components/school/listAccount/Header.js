@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable eol-last */
 /* eslint-disable semi */
-import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import List from './List'
 import IAIImage from '../../../assets/images/defaultIAI.png'
+import { logOut } from '../../../module/auth/action'
 
 const teacherData = [
     {
@@ -57,7 +58,18 @@ const Header = ({navigation}) => {
                 <Image style={{ width: 60, height: 60 }} source={require("../../../assets/images/logo.png")} />
             </View>
             <View>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button}
+                    onPress={()=>{
+                        logOut().then((response)=>{
+                            console.log(response);
+                            if(response.status == 200){
+                                navigation.push("LoginScreen")
+                            }else{
+                                Alert.alert(response.message)
+                            }
+                        })
+                    }}
+                >
                     <Text style={{ color: "white" }}>SIGN OUT</Text>
                 </TouchableOpacity>
             </View>
