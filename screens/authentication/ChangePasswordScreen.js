@@ -9,10 +9,12 @@ import Logo from '../../components/authentication/mix/Logo'
 import ChangePasswordForm from './../../components/authentication/changePassword/ChangePasswordForm'
 
 
+
 const PAGE = 'Welcome \n aboard!'
 
 
 const ChangePasswordScreen = ({navigation}) => {
+
   return (
     <View style={{ backgroundColor: 'white', height: '100%' }}>
       <Logo page={PAGE}/>
