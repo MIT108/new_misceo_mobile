@@ -16,7 +16,6 @@ export async function setUserData(value){
 
 export async function setUserToken(value){
     try {
-        value = JSON.stringify(value)
         await AsyncStorage.setItem('@userToken', value)
     } catch (e) {
         console.log("error: " + e)

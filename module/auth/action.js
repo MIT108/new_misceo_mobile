@@ -13,9 +13,7 @@ import {
     setUserData,
     setUserToken,
 } from './../../helper/UserStorage'
-import {
-    URL
-} from '@env'
+import URL from '../../config/env'
 import { Alert } from 'react-native';
 
 
@@ -28,7 +26,10 @@ export async function loginAction(userData) {
             URL + 'user/login',
             userData
         );
-        console.log("user is ok");
+
+
+        setUserData(response.data.data.user)
+        setUserToken(response.data.data.token)
         // if(!!response.data.error){
         //     returns = {
         //         'error': response.data.error,
@@ -41,9 +42,14 @@ export async function loginAction(userData) {
         //     }
         //     setUserData(response.data)
         // }
+        
+        returns = {
+            'message': response.data.message,
+            'status': response.status
+        }
 
     } catch (error) {
-        console.log(error);
+        console.log(error.response.data);
         if (error.response.status == 500 || error.response.status == 0) {
             returns = {
                 'message': "connect to the internet",
@@ -115,6 +121,64 @@ export async function sendOTPCode(OTPData) {
         }
         setUserData(response.data.data.user)
         setUserToken(response.data.data.token)
+
+    } catch (error) {
+        returns = {
+            'message': error.response.data.message,
+            'status': error.response.status
+        }
+    }
+
+
+    return returns
+}
+
+
+export async function restPassword(formData) {
+    let returns
+
+    try {
+        const response = await axiosInstance.post(
+            URL + 'user/reset-password',
+            formData
+        );
+
+        console.log('====================================');
+        console.log(response.data.data);
+        console.log('====================================');
+        
+        returns = {
+            'message': response.data.message,
+            'status': response.status
+        }
+
+    } catch (error) {
+        returns = {
+            'message': error.response.data.message,
+            'status': error.response.status
+        }
+    }
+
+
+    return returns
+}
+
+
+
+export async function logOut() {
+    let returns
+
+    try {
+        const response = await axiosInstance.post(
+            URL + 'user/logout'
+        );
+
+        removeData()
+        
+        returns = {
+            'message': response.data.message,
+            'status': response.status
+        }
 
     } catch (error) {
         returns = {
