@@ -48,7 +48,7 @@ const LoginForm = ({navigation}) => {
                 }else if(response.status == 200){
                     navigation.push("ListAccountScreen")
                 }else{
-                    Alert.alert(response.message)
+                    Alert.alert(response.message + response.status)
                 }
             })
 

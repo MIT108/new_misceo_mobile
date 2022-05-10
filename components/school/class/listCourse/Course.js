@@ -13,13 +13,18 @@ import fullStartIcon from '../../../../assets/Icons/star.-1.png'
 import emptyStartIcon from '../../../../assets/Icons/star.1.png'
 
 
-const Course = () => {
+const Course = ({navigation}) => {
   return (
     <View style={{ flex: 1, paddingHorizontal: 10 , marginBottom: 10}}>
 
         <View style={styles.card}>
             <ImageBackground blurRadius={5} source={bannerBGImage}  imageStyle={{ borderRadius: 15}} style={styles.banner}>
-                <Text style={styles.name}> React native crash course</Text>
+                <TouchableOpacity onPress={()=>{
+                    navigation.push("SchoolDrawer")
+                }}>
+                    <Text style={styles.name}> React native crash course</Text>
+
+                </TouchableOpacity>
             </ImageBackground>
             
             <View style={styles.body}>

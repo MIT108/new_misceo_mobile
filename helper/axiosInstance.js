@@ -9,7 +9,10 @@ let headers = {}
 
 
 const axiosInstance = axios.create({
-    headers,
+    headers:{
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json"
+    }
 });
 
 axiosInstance.interceptors.request.use(

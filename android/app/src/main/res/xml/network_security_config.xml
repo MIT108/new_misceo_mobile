@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">misceo.mitdev.tech:8000</domain>
+        <domain includeSubdomains="true">misceo.mitdev.tech</domain>
+        <domain includeSubdomains="true">mitdev.tech</domain>
+        <domain includeSubdomains="true">170.187.138.123</domain>
+        <domain includeSubdomains="true">170.187.138.123:8000</domain>
+    </domain-config>
+</network-security-config>

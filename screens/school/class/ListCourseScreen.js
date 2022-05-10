@@ -17,10 +17,10 @@ const ListCourseScreen = ({navigation}) => {
         <Menu />
       </View>
       <ScrollView style={{ paddingBottom: 30 }}>
-        <Course />
-        <Course />
-        <Course />
-        <Course />
+        <Course navigation={navigation}/>
+        <Course  navigation={navigation} />
+        <Course  navigation={navigation} />
+        <Course  navigation={navigation} />
         <View style={{ marginBottom: 150, flex: 1, justifyContent: 'center' ,alignItems: 'center', flexDirection: 'row'}}>
           <Text>No more courses</Text>
         </View>

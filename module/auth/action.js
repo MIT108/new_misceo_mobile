@@ -71,6 +71,12 @@ export async function loginAction(userData) {
                     'status': error.response.status
                 }
 
+            }else{
+                returns = {
+                    'message': "connect to the internet",
+                    'status': error.response.status
+                }
+
             }
 
         }
