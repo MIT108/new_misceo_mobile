@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import 'react-native-gesture-handler';
 
 
-import ListCourseScreen from '../../screens/school/class/ListCourseScreen';
+import MainScreen from '../../../screens/school/chatAndCall/MainScreen';
 
 const Stack = createNativeStackNavigator()
 
@@ -20,7 +20,7 @@ const SchoolStack = () => {
 
     return (
         <Stack.Navigator screenOptions={screenOptions}>
-            <Stack.Screen name="ListCourseScreen" component={ListCourseScreen} />
+            <Stack.Screen name="ChatCallMainScreen" component={MainScreen} />
         </Stack.Navigator>
 )}
 

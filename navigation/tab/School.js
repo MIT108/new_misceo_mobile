@@ -8,7 +8,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import ListPostScreen from "../../screens/school/class/course/post/ListPostScreen";
 import AddPostScreen from "../../screens/school/class/course/post/AddPostScreen";
-import ChatCallScreen from "../../screens/school/communication/ChatCallScreen";
+import MainScreen from "../../screens/school/chatAndCall/MainScreen";
 import LiveChatScreen from "../../screens/school/class/course/LiveChatScreen";
 import MarkScreen from "../../screens/school/class/course/MarkScreen";
 import SchoolDrawerHeader from '../drawer/SchoolDrawerHeader'
@@ -98,7 +98,7 @@ const BottomTabNavigator = ({navigation}) => {
           </View>
         )
        }} />
-      <Tab.Screen name="Chat" component={ChatCallScreen} 
+      <Tab.Screen name="ChatCallMainScreen" component={MainScreen} 
         options={{ 
         tabBarIcon: ({focused})=>(
           <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
