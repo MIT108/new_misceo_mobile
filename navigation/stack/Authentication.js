@@ -28,7 +28,7 @@ const screenOptions = {
 const AuthenticationStack = () => {
 
     return (
-        <Stack.Navigator initialRouteName="LoginScreen" screenOptions={screenOptions}>
+        <Stack.Navigator initialRouteName="SplashScreen" screenOptions={screenOptions}>
             <Stack.Screen name="SplashScreen" component={SplashScreen} />
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} />
