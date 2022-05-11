@@ -30,18 +30,6 @@ export async function loginAction(userData) {
 
         setUserData(response.data.data.user)
         setUserToken(response.data.data.token)
-        // if(!!response.data.error){
-        //     returns = {
-        //         'error': response.data.error,
-        //         'message': response.data.message
-        //     }
-        // }else{
-        //     returns = {
-        //         'user': response.data.data,
-        //         'message': response.data.message
-        //     }
-        //     setUserData(response.data)
-        // }
         
         returns = {
             'message': response.data.message,
@@ -49,7 +37,6 @@ export async function loginAction(userData) {
         }
 
     } catch (error) {
-        console.log(error.response.data);
         if (error.response.status == 500 || error.response.status == 0) {
             returns = {
                 'message': "connect to the internet",
@@ -63,8 +50,6 @@ export async function loginAction(userData) {
                     'status': error.response.status
                 }
             }else if (error.response.status == 422) {
-                setUserData("error.response.data.data.user")
-                // removeData()
                 
                 returns = {
                     'message': error.response.data.message,

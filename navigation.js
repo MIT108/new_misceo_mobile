@@ -7,8 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import 'react-native-gesture-handler';
 
 import School from './navigation/drawer/School'
-import AuthenticationStack from './navigation/stack/Authentication';
-import SchoolStack from './navigation/stack/School';
+import Stacks from './navigation/stack/Stacks';
 
 
 const Stack = createNativeStackNavigator()
@@ -21,8 +20,8 @@ const screenOptions = {
   const InitialStack = () => {
     return (
       <Stack.Navigator  screenOptions={screenOptions} >
-        <Stack.Screen name="Authentication" component={AuthenticationStack} />
-        <Stack.Screen name="SchoolDrawer" component={School} />
+      <Stack.Screen name="SchoolDrawer" component={School} />
+        <Stack.Screen name="Stacks" component={Stacks} />
       </Stack.Navigator>
     );
   }

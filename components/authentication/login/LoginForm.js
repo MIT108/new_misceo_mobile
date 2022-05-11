@@ -35,8 +35,8 @@ const LoginForm = ({navigation}) => {
         initialValues={{ email: '', password: '' }}
         onSubmit={values => {
             let userData = {
-                email: values.email,
-                password: values.password
+                email: values.email.trim,
+                password: values.password.trim
             }
             setIsLoading(true);
             
@@ -48,7 +48,7 @@ const LoginForm = ({navigation}) => {
                 }else if(response.status == 200){
                     navigation.push("ListAccountScreen")
                 }else{
-                    Alert.alert(response.message + response.status)
+                    Alert.alert(response.message)
                 }
             })
 

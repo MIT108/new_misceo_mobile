@@ -37,6 +37,7 @@ export default SchoolDrawerHeader
 
 const styles = StyleSheet.create({
     wrapper: {
+      backgroundColor: 'white',
         flex: 1, 
         flexDirection: 'row', 
         justifyContent: 'space-between', 
